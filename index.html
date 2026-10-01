@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 🛠️ CHANGE HERE 1: Apne Browser Tab Ka Title Yahan Badlein -->
   <title>𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚 - Cyber Key Panel</title>
+  
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
@@ -323,7 +326,6 @@
       margin-bottom: 14px;
     }
 
-    /* DYNAMIC GRADIENT BUTTON */
     .btn-generate {
       display: flex;
       justify-content: center;
@@ -447,19 +449,30 @@
       <div class="profile-section">
         <div class="animated-flowing-line"></div>
 
+        <!-- Left Social Buttons -->
         <div class="social-col left">
-          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle yt" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <!-- 🛠️ CHANGE HERE 2: YouTube Channel Link -->
+          <a href="https://www.youtube.com/@SARKAR_YT_10K_H4X" class="social-btn-circle yt" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          
+          <!-- 🛠️ CHANGE HERE 3: Instagram Link -->
+          <a href="https://www.instagram.com/itz_simpuuu?stkn=eXN5NW40cnk4ajAz" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
+        <!-- Center Profile Logo -->
         <div class="dp-container">
           <div class="ring-outer-dashed"></div>
           <div class="ring-inner-arc"></div>
+          
+          <!-- 🛠️ CHANGE HERE 4: Apna Logo Image URL Yahan Daalein -->
           <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="dp-img">
         </div>
 
+        <!-- Right Social Buttons -->
         <div class="social-col right">
+          <!-- 🛠️ CHANGE HERE 5: WhatsApp Channel/Group Link -->
           <a href="https://whatsapp.com/channel/0029VbBJzoeHrDZXvmkaVT0d" class="social-btn-circle wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+          
+          <!-- 🛠️ CHANGE HERE 6: Telegram Channel Link -->
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle tg" target="_blank">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="#00f3ff">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.07-.78 4.18-1.82 6.97-3.02 8.37-3.61 3.99-1.68 4.82-1.97 5.36-1.98.12 0 .38.03.55.17.14.12.18.28.2.45-.02.07-.02.16-.04.25z"/>
@@ -468,26 +481,27 @@
         </div>
       </div>
 
+      <!-- 🛠️ CHANGE HERE 7: Main Banner Title Name -->
       <h1 class="title-main">𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚</h1>
       <p class="subtitle">GENERATE PANEL ACCESS KEY</p>
 
+      <!-- 🛠️ CHANGE HERE 8: Tutorial Video Link -->
       <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="btn-tutorial" target="_blank">
         <i class="fa-solid fa-clapperboard"></i> WATCH SETUP TUTORIAL
       </a>
     </div>
 
-    <!-- Verification Card (Initial State as per 2nd Screenshot) -->
+    <!-- Verification Card -->
     <div class="cyber-hud-card">
       <div class="verification-title">&lt; VERIFICATION &gt;</div>
       <div class="verification-desc">COMPLETE SHORTLINK VERIFICATION TO GENERATE FREE KEY</div>
 
-      <!-- Button starts with GENERATE KEY -->
       <button id="gen-key-btn" class="btn-generate" onclick="handleGenerateClick(event)">
         <i class="fa-solid fa-key" id="btn-icon"></i> <span id="btn-text">GENERATE KEY</span>
       </button>
     </div>
 
-    <!-- Security Log Card (Initial State as per 2nd Screenshot) -->
+    <!-- Security Log Card -->
     <div class="cyber-hud-card">
       <div class="log-header">
         <span><i class="fa-solid fa-gear"></i> SECURITY LOG</span>
@@ -505,12 +519,13 @@
         </div>
         <div class="log-item">
           <span>[LOG] STATUS:</span>
-          <!-- Status starts with Waiting for Verification... -->
           <span id="log-status" class="log-val-pink">Waiting for Verification...</span>
         </div>
         <div class="log-item">
           <span>[LOG] ENCRYPTION:</span>
-          <span class="log-val-cyan">SARKAR-NODE</span>
+          
+          <!-- 🛠️ CHANGE HERE 9: Custom Node/Server Name -->
+          <span class="log-val-cyan">SARKAR-GAMING</span>
         </div>
         <div class="log-item">
           <span>[LOG] SYSTEM:</span>
@@ -519,6 +534,7 @@
       </div>
 
       <div class="hud-footer">
+        <!-- 🛠️ CHANGE HERE 10: Footer Name -->
         <span>𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚</span>
         <i class="fa-solid fa-shield-halved"></i>
         <span>CYBER HUD PRO</span>
@@ -528,7 +544,6 @@
   </div>
 
   <script>
-    // Audio Context for Cyber Beep Sound
     let audioCtx = null;
 
     function getAudioContext() {
@@ -567,7 +582,6 @@
       } catch(e) {}
     }
 
-    // Dynamic Live State Switcher
     function handleGenerateClick(event) {
       event.preventDefault();
       playCyberClick();
@@ -575,9 +589,11 @@
       const btnIcon = document.getElementById('btn-icon');
       const btnText = document.getElementById('btn-text');
       const logStatus = document.getElementById('log-status');
-      const targetUrl = "https://t.me/+nWSu9VPCdLo1OTZl"; // Apna shortlink / verification URL yahan dalein
+      
+      // 🛠️ CHANGE HERE 11: Apna Shortlink URL Yahan Daalein (Jahan User Click karke Jayega)
+      const targetUrl = "https://your-shortlink-url.com"; 
 
-      // Switch to 1st Photo State
+      // Live Update States
       btnIcon.className = "fa-solid fa-bolt";
       btnText.innerText = "ROUTING TRAFFIC...";
 
@@ -585,13 +601,11 @@
       logStatus.style.color = "#ff007f";
       logStatus.style.textShadow = "0 0 12px #ff007f";
 
-      // 850ms Delay to let user see animation and sound before opening link
       setTimeout(() => {
         window.open(targetUrl, "_blank");
       }, 850);
     }
 
-    // Sound Bindings
     document.addEventListener("DOMContentLoaded", () => {
       const clickables = document.querySelectorAll('a, button, .social-btn-circle, .badge-box');
       clickables.forEach(elem => {
@@ -604,7 +618,6 @@
       });
     });
 
-    // IP Fetching
     fetch('https://api.ipify.org?format=json')
       .then(response => response.json())
       .then(data => {
