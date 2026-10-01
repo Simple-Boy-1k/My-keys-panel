@@ -12,6 +12,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Rajdhani', sans-serif;
+      user-select: none;
     }
 
     body {
@@ -130,7 +131,7 @@
       height: 170px;
     }
 
-    /* CONTINUOUS MOVING COLOR LINE (RANG LEFT TO RIGHT FLOW HOTA HAI) */
+    /* CONTINUOUS MOVING COLOR LINE */
     .animated-flowing-line {
       position: absolute;
       left: 0;
@@ -350,6 +351,7 @@
       text-decoration: none;
       box-shadow: 0 0 22px rgba(0, 210, 255, 0.7), 0 0 30px rgba(216, 0, 255, 0.5);
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     /* Security Log Layout */
@@ -392,7 +394,7 @@
 
     .log-val-cyan { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
     .log-val-green { color: #00ff66; text-shadow: 0 0 5px #00ff66; }
-    .log-val-pink { color: #ff007f; text-shadow: 0 0 5px #ff007f; }
+    .log-val-pink { color: #ff007f; text-shadow: 0 0 8px #ff007f; transition: all 0.3s ease; }
 
     .btn-copy {
       background: rgba(255, 255, 255, 0.08);
@@ -447,7 +449,7 @@
       </div>
 
       <div class="profile-section">
-        <!-- Animated Multi-Color Flowing Horizontal Line (Continuous Shift) -->
+        <!-- Animated Multi-Color Flowing Line -->
         <div class="animated-flowing-line"></div>
 
         <!-- Left Social Buttons -->
@@ -456,14 +458,14 @@
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <!-- Center Profile DP with Spacing & Color Animation -->
+        <!-- Center Profile DP -->
         <div class="dp-container">
           <div class="ring-outer-dashed"></div>
           <div class="ring-inner-arc"></div>
           <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="dp-img">
         </div>
 
-        <!-- Right Social Buttons (WhatsApp & Official Telegram SVG) -->
+        <!-- Right Social Buttons -->
         <div class="social-col right">
           <a href="https://whatsapp.com/channel/0029VbBJzoeHrDZXvmkaVT0d" class="social-btn-circle wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle tg" target="_blank">
@@ -487,9 +489,10 @@
       <div class="verification-title">&lt; VERIFICATION &gt;</div>
       <div class="verification-desc">COMPLETE SHORTLINK VERIFICATION TO GENERATE FREE KEY</div>
 
-      <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="btn-generate" target="_blank">
-        <i class="fa-solid fa-key"></i> GENERATE KEY
-      </a>
+      <!-- Live Dynamic Verification Button -->
+      <button id="gen-key-btn" class="btn-generate" onclick="handleGenerateClick(event)">
+        <i class="fa-solid fa-key" id="btn-icon"></i> <span id="btn-text">GENERATE KEY</span>
+      </button>
     </div>
 
     <!-- Security Log Card -->
@@ -510,7 +513,8 @@
         </div>
         <div class="log-item">
           <span>[LOG] STATUS:</span>
-          <span class="log-val-pink">Waiting for Verification...</span>
+          <!-- Dynamic Status Text -->
+          <span id="log-status" class="log-val-pink">Waiting for Verification...</span>
         </div>
         <div class="log-item">
           <span>[LOG] ENCRYPTION:</span>
@@ -532,41 +536,85 @@
   </div>
 
   <script>
-    // Futuristic Cyber Sound Synthesizer (Web Audio API)
+    // Futuristic High-Pitch Cyber Sound Synthesizer
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
     function playCyberClick() {
       try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
 
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(900, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.07);
+        // Sharp Cyber Laser Beep
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1400, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(350, ctx.currentTime + 0.09);
 
-        gain.gain.setValueAtTime(0.2, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.07);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.09);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
         osc.start();
-        osc.stop(ctx.currentTime + 0.07);
+        osc.stop(ctx.currentTime + 0.09);
       } catch(e) {}
     }
 
-    // Attach Click Sound to all Interactive Buttons/Icons
+    // Dynamic Click Handler for "GENERATE KEY"
+    function handleGenerateClick(event) {
+      event.preventDefault();
+      playCyberClick();
+
+      const btnIcon = document.getElementById('btn-icon');
+      const btnText = document.getElementById('btn-text');
+      const logStatus = document.getElementById('log-status');
+      const targetUrl = "https://t.me/+nWSu9VPCdLo1OTZl"; // Apka verification link
+
+      // 1. Update Button Text to ROUTING TRAFFIC...
+      btnIcon.className = "fa-solid fa-bolt";
+      btnText.innerText = "ROUTING TRAFFIC...";
+
+      // 2. Update Log Status in Security Log
+      logStatus.innerText = "Redirecting to Verification Hub...";
+      logStatus.style.color = "#ff007f";
+      logStatus.style.textShadow = "0 0 12px #ff007f";
+
+      // 3. Delay redirect so user sees the dynamic UI change
+      setTimeout(() => {
+        window.open(targetUrl, "_blank");
+      }, 850);
+    }
+
+    // Sound Bindings on all Interactive Elements
     document.addEventListener("DOMContentLoaded", () => {
       const clickables = document.querySelectorAll('a, button, .social-btn-circle, .badge-box');
       clickables.forEach(elem => {
         elem.addEventListener('click', () => {
           playCyberClick();
         });
+        elem.addEventListener('touchstart', () => {
+          getAudioContext();
+        }, { passive: true });
       });
     });
 
-    // IP Fetching Function
+    // IP Fetching
     fetch('https://api.ipify.org?format=json')
       .then(response => response.json())
       .then(data => {
