@@ -33,7 +33,7 @@
       gap: 12px;
     }
 
-    /* 1. TOP BADGES WITH GLOW */
+    /* TOP BADGES */
     .top-badges {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -68,7 +68,7 @@
       text-shadow: 0 0 6px rgba(0, 243, 255, 0.8);
     }
 
-    /* MAIN CYBER CARD */
+    /* CYBER HUD CARD */
     .cyber-hud-card {
       background: rgba(4, 10, 22, 0.95);
       border: 1px solid rgba(0, 243, 255, 0.35);
@@ -78,7 +78,6 @@
       box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
     }
 
-    /* HUD Corner Marks */
     .cyber-hud-card::before, .cyber-hud-card::after {
       content: '';
       position: absolute;
@@ -103,7 +102,6 @@
       filter: drop-shadow(0 0 4px #00f3ff);
     }
 
-    /* Status Bar */
     .status-line {
       display: flex;
       justify-content: space-between;
@@ -121,7 +119,7 @@
       text-shadow: 0 0 8px #00ff66;
     }
 
-    /* 2. PROFILE HUD SECTION */
+    /* PROFILE SECTION */
     .profile-section {
       position: relative;
       display: flex;
@@ -131,7 +129,6 @@
       height: 170px;
     }
 
-    /* CONTINUOUS MOVING COLOR LINE */
     .animated-flowing-line {
       position: absolute;
       left: 0;
@@ -150,7 +147,7 @@
       100% { background-position: 300% 50%; }
     }
 
-    /* 3. GLOWING SOCIAL BUTTONS WITH SVG ICONS */
+    /* SOCIAL BUTTONS */
     .social-col {
       position: absolute;
       display: flex;
@@ -204,7 +201,7 @@
       transform: scale(0.9);
     }
 
-    /* 4. DUAL ROTATING RINGS WITH COLOR-SHIFTING ANIMATION & GAP */
+    /* ROTATING RINGS */
     .dp-container {
       position: relative;
       width: 170px;
@@ -215,7 +212,6 @@
       z-index: 3;
     }
 
-    /* Center DP Logo Circle */
     .dp-img {
       width: 78px;
       height: 78px;
@@ -227,7 +223,6 @@
       background: #020712;
     }
 
-    /* Inner Rotating Arc Ring */
     .ring-inner-arc {
       position: absolute;
       width: 122px;
@@ -240,7 +235,6 @@
       z-index: 2;
     }
 
-    /* Outer Rotating Dashed Arc Ring */
     .ring-outer-dashed {
       position: absolute;
       width: 156px;
@@ -267,7 +261,6 @@
       100% { filter: drop-shadow(0 0 10px #ff007f) hue-rotate(360deg); }
     }
 
-    /* Titles */
     .title-main {
       text-align: center;
       font-family: 'Orbitron', sans-serif;
@@ -289,7 +282,6 @@
       margin-bottom: 16px;
     }
 
-    /* Setup Tutorial Button */
     .btn-tutorial {
       display: flex;
       justify-content: center;
@@ -310,7 +302,7 @@
       cursor: pointer;
     }
 
-    /* Verification Title & Button Glow */
+    /* VERIFICATION SECTION */
     .verification-title {
       text-align: center;
       color: #ff007f;
@@ -331,6 +323,7 @@
       margin-bottom: 14px;
     }
 
+    /* DYNAMIC GRADIENT BUTTON */
     .btn-generate {
       display: flex;
       justify-content: center;
@@ -348,13 +341,16 @@
       font-size: 13px;
       font-weight: 900;
       letter-spacing: 1.5px;
-      text-decoration: none;
       box-shadow: 0 0 22px rgba(0, 210, 255, 0.7), 0 0 30px rgba(216, 0, 255, 0.5);
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    /* Security Log Layout */
+    .btn-generate:active {
+      transform: scale(0.98);
+    }
+
+    /* SECURITY LOG */
     .log-header {
       display: flex;
       justify-content: space-between;
@@ -449,23 +445,19 @@
       </div>
 
       <div class="profile-section">
-        <!-- Animated Multi-Color Flowing Line -->
         <div class="animated-flowing-line"></div>
 
-        <!-- Left Social Buttons -->
         <div class="social-col left">
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle yt" target="_blank"><i class="fa-brands fa-youtube"></i></a>
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <!-- Center Profile DP -->
         <div class="dp-container">
           <div class="ring-outer-dashed"></div>
           <div class="ring-inner-arc"></div>
           <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="dp-img">
         </div>
 
-        <!-- Right Social Buttons -->
         <div class="social-col right">
           <a href="https://whatsapp.com/channel/0029VbBJzoeHrDZXvmkaVT0d" class="social-btn-circle wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle tg" target="_blank">
@@ -484,18 +476,18 @@
       </a>
     </div>
 
-    <!-- Verification Card -->
+    <!-- Verification Card (Initial State as per 2nd Screenshot) -->
     <div class="cyber-hud-card">
       <div class="verification-title">&lt; VERIFICATION &gt;</div>
       <div class="verification-desc">COMPLETE SHORTLINK VERIFICATION TO GENERATE FREE KEY</div>
 
-      <!-- Live Dynamic Verification Button -->
+      <!-- Button starts with GENERATE KEY -->
       <button id="gen-key-btn" class="btn-generate" onclick="handleGenerateClick(event)">
         <i class="fa-solid fa-key" id="btn-icon"></i> <span id="btn-text">GENERATE KEY</span>
       </button>
     </div>
 
-    <!-- Security Log Card -->
+    <!-- Security Log Card (Initial State as per 2nd Screenshot) -->
     <div class="cyber-hud-card">
       <div class="log-header">
         <span><i class="fa-solid fa-gear"></i> SECURITY LOG</span>
@@ -513,7 +505,7 @@
         </div>
         <div class="log-item">
           <span>[LOG] STATUS:</span>
-          <!-- Dynamic Status Text -->
+          <!-- Status starts with Waiting for Verification... -->
           <span id="log-status" class="log-val-pink">Waiting for Verification...</span>
         </div>
         <div class="log-item">
@@ -536,7 +528,7 @@
   </div>
 
   <script>
-    // Futuristic High-Pitch Cyber Sound Synthesizer
+    // Audio Context for Cyber Beep Sound
     let audioCtx = null;
 
     function getAudioContext() {
@@ -560,7 +552,6 @@
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
 
-        // Sharp Cyber Laser Beep
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(1400, ctx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(350, ctx.currentTime + 0.09);
@@ -576,7 +567,7 @@
       } catch(e) {}
     }
 
-    // Dynamic Click Handler for "GENERATE KEY"
+    // Dynamic Live State Switcher
     function handleGenerateClick(event) {
       event.preventDefault();
       playCyberClick();
@@ -584,24 +575,23 @@
       const btnIcon = document.getElementById('btn-icon');
       const btnText = document.getElementById('btn-text');
       const logStatus = document.getElementById('log-status');
-      const targetUrl = "https://t.me/+nWSu9VPCdLo1OTZl"; // Apka verification link
+      const targetUrl = "https://t.me/+nWSu9VPCdLo1OTZl"; // Apna shortlink / verification URL yahan dalein
 
-      // 1. Update Button Text to ROUTING TRAFFIC...
+      // Switch to 1st Photo State
       btnIcon.className = "fa-solid fa-bolt";
       btnText.innerText = "ROUTING TRAFFIC...";
 
-      // 2. Update Log Status in Security Log
       logStatus.innerText = "Redirecting to Verification Hub...";
       logStatus.style.color = "#ff007f";
       logStatus.style.textShadow = "0 0 12px #ff007f";
 
-      // 3. Delay redirect so user sees the dynamic UI change
+      // 850ms Delay to let user see animation and sound before opening link
       setTimeout(() => {
         window.open(targetUrl, "_blank");
       }, 850);
     }
 
-    // Sound Bindings on all Interactive Elements
+    // Sound Bindings
     document.addEventListener("DOMContentLoaded", () => {
       const clickables = document.querySelectorAll('a, button, .social-btn-circle, .badge-box');
       clickables.forEach(elem => {
