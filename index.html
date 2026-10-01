@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚 - Key Panel</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,275 +15,347 @@
     }
 
     body {
-      background-color: #05070e;
+      background-color: #03060f;
       color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 15px;
+      padding: 12px;
     }
 
     .wrapper {
       width: 100%;
-      max-width: 420px;
+      max-width: 410px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
     }
 
     /* Top Badges */
     .top-badges {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 6px;
     }
 
     .badge-box {
-      background: rgba(10, 20, 35, 0.8);
-      border: 1px solid rgba(0, 243, 255, 0.3);
+      background: #060d1a;
+      border: 1px solid rgba(0, 243, 255, 0.35);
       border-radius: 8px;
-      padding: 8px 4px;
+      padding: 8px 2px;
       text-align: center;
+      box-shadow: inset 0 0 8px rgba(0, 243, 255, 0.08);
     }
 
     .badge-box i {
       color: #00f3ff;
       font-size: 14px;
+      margin-bottom: 4px;
       display: block;
-      margin-bottom: 3px;
+      filter: drop-shadow(0 0 4px #00f3ff);
     }
 
     .badge-box span {
       font-family: 'Orbitron', sans-serif;
-      font-size: 8px;
+      font-size: 7.5px;
       color: #00f3ff;
+      font-weight: 700;
       letter-spacing: 0.5px;
-      text-transform: uppercase;
+      display: block;
     }
 
-    /* Card Styling */
-    .cyber-card {
-      background: rgba(8, 14, 26, 0.95);
-      border: 1px solid rgba(0, 243, 255, 0.25);
-      border-radius: 14px;
-      padding: 20px;
+    /* Cyber HUD Card */
+    .cyber-hud-card {
+      background: rgba(5, 12, 26, 0.95);
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      border-radius: 12px;
+      padding: 16px;
       position: relative;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.08);
     }
 
-    /* Main Section */
-    .status-header {
+    /* HUD Corner Effects */
+    .cyber-hud-card::before, .cyber-hud-card::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-color: #00f3ff;
+      border-style: solid;
+      pointer-events: none;
+    }
+
+    .cyber-hud-card::before {
+      top: -1px; left: -1px;
+      border-width: 2px 0 0 2px;
+      border-top-left-radius: 12px;
+    }
+
+    .cyber-hud-card::after {
+      bottom: -1px; right: -1px;
+      border-width: 0 2px 2px 0;
+      border-bottom-right-radius: 12px;
+    }
+
+    /* Header Status Line */
+    .status-line {
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
       font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
       color: #00f3ff;
+      letter-spacing: 1px;
       margin-bottom: 15px;
     }
 
-    .live-dot {
+    .live-status {
       color: #00ff66;
+      text-shadow: 0 0 6px #00ff66;
     }
 
-    .profile-container {
+    /* Center Profile HUD */
+    .profile-section {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 15px 0;
+      margin: 10px 0 20px 0;
+      height: 140px;
     }
 
-    .avatar-ring {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 2px dashed #00f3ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: spin 12s linear infinite;
-    }
-
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
-
-    .avatar-img {
+    .connecting-line {
       position: absolute;
-      width: 95px;
-      height: 95px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #ff007f;
-      box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #ff0055, #00f3ff, #00ff66);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      opacity: 0.6;
+      box-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
     }
 
-    /* Social Icons Floating */
-    .social-left, .social-right {
+    .social-col {
       position: absolute;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 16px;
+      z-index: 2;
     }
 
-    .social-left { left: 10px; }
-    .social-right { right: 10px; }
+    .social-col.left { left: 10px; }
+    .social-col.right { right: 10px; }
 
-    .social-btn {
-      width: 36px;
-      height: 36px;
+    .social-btn-circle {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
+      background: #030814;
       display: flex;
       justify-content: center;
       align-items: center;
       text-decoration: none;
-      font-size: 16px;
-      border: 1px solid transparent;
+      font-size: 17px;
       transition: 0.3s;
     }
 
-    .yt { border-color: #ff0055; color: #ff0055; background: rgba(255, 0, 85, 0.1); }
-    .insta { border-color: #ff007f; color: #ff007f; background: rgba(255, 0, 127, 0.1); }
-    .wa { border-color: #00ff66; color: #00ff66; background: rgba(0, 255, 102, 0.1); }
-    .tg { border-color: #00d2ff; color: #00d2ff; background: rgba(0, 210, 255, 0.1); }
+    .social-btn-circle.yt { border: 2px solid #ff0055; color: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.4); }
+    .social-btn-circle.insta { border: 2px solid #ff007f; color: #ff007f; box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); }
+    .social-btn-circle.wa { border: 2px solid #00ff66; color: #00ff66; box-shadow: 0 0 10px rgba(0, 255, 102, 0.4); }
+    .social-btn-circle.tg { border: 2px solid #00f3ff; color: #00f3ff; box-shadow: 0 0 10px rgba(0, 243, 255, 0.4); }
 
-    .channel-title {
+    /* Dual Concentric Spinning Rings */
+    .dp-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      background: #050c1a;
+      border-radius: 50%;
+    }
+
+    .ring-outer {
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      border: 2px dashed #00f3ff;
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+      animation: spinClockwise 15s linear infinite;
+    }
+
+    .ring-inner {
+      position: absolute;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      border: 2px dashed #ff007f;
+      box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+      animation: spinCounter 10s linear infinite;
+    }
+
+    @keyframes spinClockwise { 100% { transform: rotate(360deg); } }
+    @keyframes spinCounter { 100% { transform: rotate(-360deg); } }
+
+    .dp-img {
+      width: 94px;
+      height: 94px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00f3ff;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+      z-index: 3;
+    }
+
+    /* Main Branding Titles */
+    .title-main {
       text-align: center;
       font-family: 'Orbitron', sans-serif;
-      font-size: 20px;
-      letter-spacing: 1.5px;
-      color: #ffffff;
-      margin-top: 5px;
-      text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
-    }
-
-    .sub-title {
-      text-align: center;
-      font-size: 10px;
-      color: #8a99ad;
+      font-size: 22px;
+      font-weight: 900;
       letter-spacing: 2px;
-      margin-bottom: 15px;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(0, 243, 255, 0.8), 0 0 20px rgba(0, 243, 255, 0.4);
+      margin-bottom: 4px;
     }
 
-    .btn-tutorial {
-      display: block;
-      width: 100%;
+    .subtitle {
       text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      color: #7b8f9a;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    /* Buttons */
+    .btn-tutorial {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
       padding: 10px;
-      border-radius: 8px;
+      border-radius: 25px;
       border: 1px solid #ff007f;
-      background: rgba(255, 0, 127, 0.1);
+      background: rgba(255, 0, 127, 0.08);
       color: #ffffff;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 13px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
       letter-spacing: 1px;
-      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
     }
 
-    /* Verification Box */
-    .section-title {
+    .verification-title {
       text-align: center;
       color: #ff007f;
       font-family: 'Orbitron', sans-serif;
       font-size: 13px;
-      letter-spacing: 1px;
-      margin-bottom: 5px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
+      margin-bottom: 4px;
     }
 
-    .section-desc {
+    .verification-desc {
       text-align: center;
-      font-size: 9px;
-      color: #8a99ad;
+      font-size: 8.5px;
+      font-family: 'Orbitron', sans-serif;
+      color: #7b8f9a;
       letter-spacing: 1px;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
     .btn-generate {
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
       width: 100%;
-      padding: 12px;
+      padding: 13px;
+      border-radius: 25px;
       border: none;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #9900ff, #00d2ff);
-      color: #fff;
+      background: linear-gradient(90deg, #b000ff, #00d2ff);
+      color: #ffffff;
       font-family: 'Orbitron', sans-serif;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: center;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
       text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
       cursor: pointer;
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
-      transition: 0.3s;
     }
 
-    .btn-generate:hover {
-      opacity: 0.9;
-      box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
-    }
-
-    /* Security Log Box */
+    /* Security Log Layout */
     .log-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      font-size: 12px;
-      color: #00f3ff;
       font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #00f3ff;
+      margin-bottom: 12px;
     }
 
-    .active-tag {
-      background: rgba(0, 255, 102, 0.2);
+    .active-badge {
+      background: rgba(0, 255, 102, 0.15);
       border: 1px solid #00ff66;
       color: #00ff66;
-      font-size: 9px;
-      padding: 2px 6px;
+      font-size: 8.5px;
+      padding: 2px 8px;
       border-radius: 4px;
+      box-shadow: 0 0 6px rgba(0, 255, 102, 0.3);
     }
 
-    .log-content {
-      font-family: monospace;
+    .log-box {
+      font-family: 'Share Tech Mono', monospace;
       font-size: 11px;
-      color: #7a8b9e;
+      color: #617385;
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
 
-    .log-row {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .log-val {
-      color: #00f3ff;
-    }
-
-    .log-row-ip {
+    .log-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    .log-val-cyan { color: #00f3ff; }
+    .log-val-green { color: #00ff66; }
+    .log-val-pink { color: #ff007f; }
+
     .btn-copy {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #445566;
-      color: #fff;
-      padding: 1px 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 243, 255, 0.4);
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
       font-size: 9px;
-      border-radius: 3px;
+      padding: 2px 8px;
+      border-radius: 4px;
       cursor: pointer;
     }
 
-    .footer-bar {
+    .hud-footer {
       display: flex;
       justify-content: space-between;
-      font-size: 9px;
-      color: #445566;
-      margin-top: 5px;
+      align-items: center;
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0, 243, 255, 0.15);
       font-family: 'Orbitron', sans-serif;
+      font-size: 8.5px;
+      color: #435565;
     }
   </style>
 </head>
@@ -307,84 +379,87 @@
       </div>
     </div>
 
-    <!-- Main Card -->
-    <div class="cyber-card">
-      <div class="status-header">
+    <!-- Main Profile HUD -->
+    <div class="cyber-hud-card">
+      <div class="status-line">
         <span>STATUS: ONLINE</span>
-        <span class="live-dot"><i class="fa-solid fa-circle"></i> LIVE</span>
+        <span class="live-status"><i class="fa-solid fa-circle"></i> LIVE</span>
       </div>
 
-      <div class="profile-container">
+      <div class="profile-section">
+        <div class="connecting-line"></div>
+
         <!-- Left Social Buttons -->
-        <div class="social-left">
-          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn yt" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <div class="social-col left">
+          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle yt" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <!-- Center Animated Profile Ring & DP -->
-        <div class="avatar-ring"></div>
-        <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="avatar-img">
+        <!-- Dual Circular Ring Frame -->
+        <div class="dp-wrapper">
+          <div class="ring-outer"></div>
+          <div class="ring-inner"></div>
+          <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="dp-img">
+        </div>
 
         <!-- Right Social Buttons -->
-        <div class="social-right">
-          <a href="https://whatsapp.com/channel/0029VbBJzoeHrDZXvmkaVT0d" class="social-btn wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn tg" target="_blank"><i class="fa-paper-plane"></i></a>
+        <div class="social-col right">
+          <a href="https://whatsapp.com/channel/0029VbBJzoeHrDZXvmkaVT0d" class="social-btn-circle wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle tg" target="_blank"><i class="fa-paper-plane"></i></a>
         </div>
       </div>
 
-      <!-- Channel Name -->
-      <h1 class="channel-title">𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚</h1>
-      <p class="sub-title">GENERATE PANEL ACCESS KEY</p>
+      <h1 class="title-main">𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚</h1>
+      <p class="subtitle">GENERATE PANEL ACCESS KEY</p>
 
-      <!-- Video Tutorial Link -->
       <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="btn-tutorial" target="_blank">
-        <i class="fa-solid fa-play"></i> WATCH SETUP TUTORIAL
+        <i class="fa-solid fa-clapperboard"></i> WATCH SETUP TUTORIAL
       </a>
     </div>
 
-    <!-- Verification Card -->
-    <div class="cyber-card">
-      <div class="section-title">&lt; VERIFICATION &gt;</div>
-      <div class="section-desc">COMPLETE SHORTLINK VERIFICATION TO GENERATE FREE KEY</div>
-      
-      <!-- Key Generate Link -->
+    <!-- Verification HUD Card -->
+    <div class="cyber-hud-card">
+      <div class="verification-title">&lt; VERIFICATION &gt;</div>
+      <div class="verification-desc">COMPLETE SHORTLINK VERIFICATION TO GENERATE FREE KEY</div>
+
       <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="btn-generate" target="_blank">
         <i class="fa-solid fa-key"></i> GENERATE KEY
       </a>
     </div>
 
-    <!-- Security Log Box -->
-    <div class="cyber-card">
+    <!-- Security Log HUD Card -->
+    <div class="cyber-hud-card">
       <div class="log-header">
         <span><i class="fa-solid fa-gear"></i> SECURITY LOG</span>
-        <span class="active-tag"><i class="fa-solid fa-bolt"></i> ACTIVE</span>
+        <span class="active-badge"><i class="fa-solid fa-bolt"></i> ACTIVE</span>
       </div>
 
-      <div class="log-content">
-        <div class="log-row-ip">
-          <span>[LOG] IP ADDRESS: <span id="user-ip" class="log-val">Loading...</span></span>
+      <div class="log-box">
+        <div class="log-item">
+          <span>[LOG] IP ADDRESS: <span id="user-ip" class="log-val-cyan">Loading...</span></span>
           <button class="btn-copy" onclick="copyIP()">COPY</button>
         </div>
-        <div class="log-row">
+        <div class="log-item">
           <span>[LOG] ANTI-BYPASS:</span>
-          <span class="log-val" style="color: #00ff66;">ENABLED</span>
+          <span class="log-val-green">ENABLED</span>
         </div>
-        <div class="log-row">
+        <div class="log-item">
           <span>[LOG] STATUS:</span>
-          <span class="log-val">Waiting for Verification...</span>
+          <span class="log-val-pink">Waiting for Verification...</span>
         </div>
-        <div class="log-row">
+        <div class="log-item">
           <span>[LOG] ENCRYPTION:</span>
-          <span class="log-val">CYBER-NODE</span>
+          <span class="log-val-cyan">SARKAR-NODE</span>
         </div>
-        <div class="log-row">
+        <div class="log-item">
           <span>[LOG] SYSTEM:</span>
-          <span class="log-val" style="color: #00ff66;">All Systems Secure</span>
+          <span class="log-val-green">All Systems Secure</span>
         </div>
       </div>
 
-      <div class="footer-bar">
+      <div class="hud-footer">
         <span>𝗦𝗔𝗥𝗞𝗔𝗥 𝗚𝗔𝗠𝗜𝗡𝗚</span>
+        <i class="fa-solid fa-shield-halved"></i>
         <span>CYBER HUD PRO</span>
       </div>
     </div>
