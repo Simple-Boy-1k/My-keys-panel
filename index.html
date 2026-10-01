@@ -32,7 +32,7 @@
       gap: 12px;
     }
 
-    /* 1. Top Glowing Badges */
+    /* 1. TOP BADGES WITH ROTATING GLOW BORDER */
     .top-badges {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -40,18 +40,35 @@
     }
 
     .badge-box {
+      position: relative;
       background: #050d1a;
-      border: 1px solid rgba(0, 243, 255, 0.4);
       border-radius: 8px;
       padding: 10px 4px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.15), inset 0 0 8px rgba(0, 243, 255, 0.1);
-      animation: badgePulse 3s infinite alternate;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    @keyframes badgePulse {
-      0% { border-color: rgba(0, 243, 255, 0.3); box-shadow: 0 0 8px rgba(0, 243, 255, 0.1); }
-      100% { border-color: rgba(255, 0, 127, 0.6); box-shadow: 0 0 15px rgba(255, 0, 127, 0.25); }
+    /* Rotating Light Line around Badges */
+    .badge-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent 60%, #00f3ff 85%, #ff007f 100%);
+      animation: rotateBorder 2.5s linear infinite;
+      z-index: -2;
+    }
+
+    .badge-box::after {
+      content: '';
+      position: absolute;
+      inset: 1.5px;
+      background: #050d1a;
+      border-radius: 7px;
+      z-index: -1;
     }
 
     .badge-box i {
@@ -59,7 +76,7 @@
       font-size: 15px;
       margin-bottom: 4px;
       display: block;
-      filter: drop-shadow(0 0 6px #00f3ff);
+      filter: drop-shadow(0 0 8px #00f3ff);
     }
 
     .badge-box span {
@@ -69,42 +86,45 @@
       font-weight: 700;
       letter-spacing: 0.5px;
       display: block;
-      text-shadow: 0 0 5px rgba(0, 243, 255, 0.8);
+      text-shadow: 0 0 6px rgba(0, 243, 255, 0.9);
     }
 
-    /* Main Cyber Card */
+    /* 2. MAIN CARDS WITH ROTATING GLOWING BORDER LINES */
     .cyber-hud-card {
-      background: rgba(4, 10, 22, 0.95);
-      border: 1px solid rgba(0, 243, 255, 0.35);
+      position: relative;
+      background: #040a18;
       border-radius: 14px;
       padding: 16px;
-      position: relative;
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.12);
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
     }
 
-    /* HUD Corner Marks */
-    .cyber-hud-card::before, .cyber-hud-card::after {
+    /* Main Card Moving Neon Line Animation */
+    .cyber-hud-card::before {
       content: '';
       position: absolute;
-      width: 12px;
-      height: 12px;
-      border-color: #00f3ff;
-      border-style: solid;
-      pointer-events: none;
-    }
-
-    .cyber-hud-card::before {
-      top: -1px; left: -1px;
-      border-width: 2px 0 0 2px;
-      border-top-left-radius: 14px;
-      filter: drop-shadow(0 0 4px #00f3ff);
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent 70%, #00f3ff 85%, #ff007f 100%);
+      animation: rotateBorder 3s linear infinite;
+      z-index: -2;
     }
 
     .cyber-hud-card::after {
-      bottom: -1px; right: -1px;
-      border-width: 0 2px 2px 0;
-      border-bottom-right-radius: 14px;
-      filter: drop-shadow(0 0 4px #00f3ff);
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: #040a18;
+      border-radius: 12px;
+      z-index: -1;
+    }
+
+    @keyframes rotateBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Status Bar */
@@ -117,15 +137,15 @@
       color: #00f3ff;
       letter-spacing: 1px;
       margin-bottom: 12px;
-      text-shadow: 0 0 6px rgba(0, 243, 255, 0.6);
+      text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
     }
 
     .live-status {
       color: #00ff66;
-      text-shadow: 0 0 8px #00ff66;
+      text-shadow: 0 0 10px #00ff66;
     }
 
-    /* 2. Center Profile HUD & Connecting Glowing Line */
+    /* 3. CENTER HORIZONTAL LASER BEAM LINE (FLOWING & GLOWING) */
     .profile-section {
       position: relative;
       display: flex;
@@ -138,15 +158,34 @@
     .connecting-line {
       position: absolute;
       width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #ff0055, #00f3ff, #00ff66);
+      height: 3px;
+      background: rgba(0, 243, 255, 0.3);
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
-      box-shadow: 0 0 12px #00f3ff, 0 0 6px #ff0055;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
     }
 
-    /* Social Buttons with Neon Glow */
+    /* Moving Laser Light on Horizontal Line */
+    .connecting-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #ffffff, #ff007f, #00f3ff, transparent);
+      box-shadow: 0 0 20px #ffffff, 0 0 30px #00f3ff;
+      animation: laserFlow 1.8s linear infinite;
+    }
+
+    @keyframes laserFlow {
+      0% { left: -60%; }
+      100% { left: 160%; }
+    }
+
+    /* Social Buttons */
     .social-col {
       position: absolute;
       display: flex;
@@ -171,16 +210,12 @@
       transition: all 0.3s ease;
     }
 
-    .social-btn-circle.yt { border: 2px solid #ff0055; color: #ff0055; box-shadow: 0 0 12px rgba(255, 0, 85, 0.6); }
-    .social-btn-circle.insta { border: 2px solid #ff007f; color: #ff007f; box-shadow: 0 0 12px rgba(255, 0, 127, 0.6); }
-    .social-btn-circle.wa { border: 2px solid #00ff66; color: #00ff66; box-shadow: 0 0 12px rgba(0, 255, 102, 0.6); }
-    .social-btn-circle.tg { border: 2px solid #00f3ff; color: #00f3ff; box-shadow: 0 0 12px rgba(0, 243, 255, 0.6); }
+    .social-btn-circle.yt { border: 2px solid #ff0055; color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.8); }
+    .social-btn-circle.insta { border: 2px solid #ff007f; color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.8); }
+    .social-btn-circle.wa { border: 2px solid #00ff66; color: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.8); }
+    .social-btn-circle.tg { border: 2px solid #00f3ff; color: #00f3ff; box-shadow: 0 0 15px rgba(0, 243, 255, 0.8); }
 
-    .social-btn-circle:hover {
-      transform: scale(1.1);
-    }
-
-    /* 3. Dual Rotating Neon Rings (Two-Color Spinning Glow) */
+    /* Dual Circular Spinning Ring Frame */
     .dp-wrapper {
       position: relative;
       width: 125px;
@@ -193,7 +228,6 @@
       background: #030814;
     }
 
-    /* Outer Spinning Gradient Ring */
     .dp-wrapper::before {
       content: '';
       position: absolute;
@@ -201,11 +235,10 @@
       height: 122px;
       border-radius: 50%;
       background: conic-gradient(from 0deg, #00f3ff, #ff007f, #00ff66, #00f3ff);
-      animation: spinRing 4s linear infinite;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.6), 0 0 25px rgba(255, 0, 127, 0.4);
+      animation: rotateBorder 3s linear infinite;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(255, 0, 127, 0.6);
     }
 
-    /* Inner Inverse Spinning Ring */
     .dp-wrapper::after {
       content: '';
       position: absolute;
@@ -223,13 +256,8 @@
       border-radius: 50%;
       border: 2px dashed #00f3ff;
       z-index: 2;
-      animation: spinRingReverse 6s linear infinite;
-      box-shadow: inset 0 0 10px #00f3ff;
-    }
-
-    @keyframes spinRing {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      animation: spinRingReverse 5s linear infinite;
+      box-shadow: inset 0 0 12px #00f3ff;
     }
 
     @keyframes spinRingReverse {
@@ -243,11 +271,11 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #00f3ff;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.9);
       z-index: 3;
     }
 
-    /* Branding Titles */
+    /* Titles */
     .title-main {
       text-align: center;
       font-family: 'Orbitron', sans-serif;
@@ -255,7 +283,7 @@
       font-weight: 900;
       letter-spacing: 2px;
       color: #ffffff;
-      text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+      text-shadow: 0 0 12px #00f3ff, 0 0 25px #00f3ff;
       margin-bottom: 4px;
     }
 
@@ -279,22 +307,17 @@
       padding: 10px;
       border-radius: 25px;
       border: 1px solid #ff007f;
-      background: rgba(255, 0, 127, 0.1);
+      background: rgba(255, 0, 127, 0.12);
       color: #ffffff;
       text-decoration: none;
       font-family: 'Orbitron', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1px;
-      box-shadow: 0 0 12px rgba(255, 0, 127, 0.3);
-      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
     }
 
-    .btn-tutorial:hover {
-      box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
-    }
-
-    /* 4. Verification Glow Section */
+    /* Verification Title & Button Glow */
     .verification-title {
       text-align: center;
       color: #ff007f;
@@ -302,14 +325,14 @@
       font-size: 14px;
       font-weight: 900;
       letter-spacing: 2px;
-      text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+      text-shadow: 0 0 12px #ff007f, 0 0 25px #ff007f;
       margin-bottom: 6px;
-      animation: textGlowPulse 2s infinite alternate;
+      animation: textGlowPulse 1.8s infinite alternate;
     }
 
     @keyframes textGlowPulse {
       0% { text-shadow: 0 0 8px #ff007f; }
-      100% { text-shadow: 0 0 18px #ff007f, 0 0 28px #ff007f; }
+      100% { text-shadow: 0 0 20px #ff007f, 0 0 30px #ff007f; }
     }
 
     .verification-desc {
@@ -321,7 +344,6 @@
       margin-bottom: 14px;
     }
 
-    /* 5. Generate Key Glowing Gradient Button */
     .btn-generate {
       display: flex;
       justify-content: center;
@@ -338,14 +360,14 @@
       font-weight: 900;
       letter-spacing: 1.5px;
       text-decoration: none;
-      box-shadow: 0 0 20px rgba(0, 210, 255, 0.6), 0 0 30px rgba(216, 0, 255, 0.4);
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.7), 0 0 35px rgba(216, 0, 255, 0.5);
       cursor: pointer;
-      animation: btnGlowPulse 2s infinite alternate;
+      animation: btnGlowPulse 1.8s infinite alternate;
     }
 
     @keyframes btnGlowPulse {
-      0% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.5); }
-      100% { box-shadow: 0 0 28px rgba(0, 210, 255, 0.9), 0 0 35px rgba(216, 0, 255, 0.7); }
+      0% { box-shadow: 0 0 18px rgba(0, 210, 255, 0.6); }
+      100% { box-shadow: 0 0 30px rgba(0, 210, 255, 1), 0 0 40px rgba(216, 0, 255, 0.8); }
     }
 
     /* Security Log Layout */
@@ -358,7 +380,7 @@
       font-weight: 700;
       color: #00f3ff;
       margin-bottom: 12px;
-      text-shadow: 0 0 6px #00f3ff;
+      text-shadow: 0 0 8px #00f3ff;
     }
 
     .active-badge {
@@ -368,7 +390,7 @@
       font-size: 8.5px;
       padding: 2px 8px;
       border-radius: 4px;
-      box-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
     }
 
     .log-box {
@@ -386,9 +408,9 @@
       align-items: center;
     }
 
-    .log-val-cyan { color: #00f3ff; text-shadow: 0 0 4px #00f3ff; }
-    .log-val-green { color: #00ff66; text-shadow: 0 0 4px #00ff66; }
-    .log-val-pink { color: #ff007f; text-shadow: 0 0 4px #ff007f; }
+    .log-val-cyan { color: #00f3ff; text-shadow: 0 0 6px #00f3ff; }
+    .log-val-green { color: #00ff66; text-shadow: 0 0 6px #00ff66; }
+    .log-val-pink { color: #ff007f; text-shadow: 0 0 6px #ff007f; }
 
     .btn-copy {
       background: rgba(255, 255, 255, 0.08);
@@ -399,7 +421,7 @@
       padding: 2px 8px;
       border-radius: 4px;
       cursor: pointer;
-      box-shadow: 0 0 6px rgba(0, 243, 255, 0.3);
+      box-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
     }
 
     .hud-footer {
@@ -419,7 +441,7 @@
 
   <div class="wrapper">
 
-    <!-- 1. Top Glowing Badges -->
+    <!-- Top Badges with Rotating Border -->
     <div class="top-badges">
       <div class="badge-box">
         <i class="fa-solid fa-shield-halved"></i>
@@ -435,7 +457,7 @@
       </div>
     </div>
 
-    <!-- 2. Main Profile Card with Spinning Dual Neon Ring -->
+    <!-- Main Profile Card -->
     <div class="cyber-hud-card">
       <div class="status-line">
         <span>STATUS: ONLINE</span>
@@ -451,7 +473,7 @@
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <!-- Two-Color Spinning Glowing Ring Frame -->
+        <!-- DP with Spinning Ring -->
         <div class="dp-wrapper">
           <div class="dp-inner-ring"></div>
           <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="dp-img">
@@ -472,7 +494,7 @@
       </a>
     </div>
 
-    <!-- 3. Verification HUD Card with Pink Neon Text & Glowing Button -->
+    <!-- Verification Card -->
     <div class="cyber-hud-card">
       <div class="verification-title">&lt; VERIFICATION &gt;</div>
       <div class="verification-desc">COMPLETE SHORTLINK VERIFICATION TO GENERATE FREE KEY</div>
@@ -482,7 +504,7 @@
       </a>
     </div>
 
-    <!-- 4. Security Log HUD Card -->
+    <!-- Security Log Card -->
     <div class="cyber-hud-card">
       <div class="log-header">
         <span><i class="fa-solid fa-gear"></i> SECURITY LOG</span>
