@@ -129,27 +129,24 @@
       height: 170px;
     }
 
-    /* TWO-COLOR HORIZONTAL GLOWING LINE (Left Pink, Right Cyan) */
-    .line-left {
+    /* ANIMATED FLOWING COLOR LINE (RANG IDHAR SE UDHAR SHIFT HOTE HAIN) */
+    .animated-flowing-line {
       position: absolute;
       left: 0;
       top: 50%;
-      width: 50%;
-      height: 2px;
-      background: #ff007f;
-      box-shadow: 0 0 12px #ff007f, 0 0 20px #ff007f;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #ff007f, #00f3ff, #00ff66, #d800ff, #ff007f);
+      background-size: 300% 100%;
+      animation: colorFlow 4s ease-in-out infinite;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.8), 0 0 25px rgba(255, 0, 127, 0.8);
       z-index: 1;
     }
 
-    .line-right {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 50%;
-      height: 2px;
-      background: #00f3ff;
-      box-shadow: 0 0 12px #00f3ff, 0 0 20px #00f3ff;
-      z-index: 1;
+    @keyframes colorFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* 3. GLOWING SOCIAL BUTTONS WITH SVG ICONS */
@@ -205,7 +202,7 @@
       transform: scale(1.1);
     }
 
-    /* 4. DUAL ROTATING RINGS WITH INCREASED GAP / DISTANCE FROM DP */
+    /* 4. DUAL ROTATING RINGS WITH COLOR-SHIFTING ANIMATION & GAP */
     .dp-container {
       position: relative;
       width: 170px;
@@ -228,7 +225,7 @@
       background: #020712;
     }
 
-    /* Inner Rotating Arc Ring (Gap 1 - Spaced Out) */
+    /* Inner Rotating Arc Ring (Color-Shifting + Gap) */
     .ring-inner-arc {
       position: absolute;
       width: 122px;
@@ -237,20 +234,18 @@
       border: 2.5px solid transparent;
       border-top-color: #ff007f;
       border-bottom-color: #00f3ff;
-      animation: spinClockwise 3.5s linear infinite;
-      filter: drop-shadow(0 0 8px #ff007f);
+      animation: spinClockwise 3.5s linear infinite, ringHue 5s ease-in-out infinite;
       z-index: 2;
     }
 
-    /* Outer Rotating Dashed Arc Ring (Gap 2 - Further Away) */
+    /* Outer Rotating Dashed Arc Ring (Color-Shifting + Gap) */
     .ring-outer-dashed {
       position: absolute;
       width: 156px;
       height: 156px;
       border-radius: 50%;
       border: 2px dashed #00f3ff;
-      animation: spinCounterClockwise 6s linear infinite;
-      filter: drop-shadow(0 0 8px #00f3ff);
+      animation: spinCounterClockwise 6s linear infinite, ringHue 5s ease-in-out infinite reverse;
       z-index: 1;
     }
 
@@ -262,6 +257,12 @@
     @keyframes spinCounterClockwise {
       0% { transform: rotate(360deg); }
       100% { transform: rotate(0deg); }
+    }
+
+    @keyframes ringHue {
+      0% { filter: drop-shadow(0 0 10px #ff007f) hue-rotate(0deg); }
+      50% { filter: drop-shadow(0 0 10px #00f3ff) hue-rotate(180deg); }
+      100% { filter: drop-shadow(0 0 10px #ff007f) hue-rotate(360deg); }
     }
 
     /* Titles */
@@ -336,7 +337,9 @@
       padding: 13px;
       border-radius: 25px;
       border: none;
-      background: linear-gradient(90deg, #d800ff, #00d2ff);
+      background: linear-gradient(90deg, #d800ff, #00d2ff, #ff007f);
+      background-size: 200% 100%;
+      animation: colorFlow 3s ease-in-out infinite;
       color: #ffffff;
       font-family: 'Orbitron', sans-serif;
       font-size: 13px;
@@ -442,9 +445,8 @@
       </div>
 
       <div class="profile-section">
-        <!-- Two Color Horizontal Glowing Line -->
-        <div class="line-left"></div>
-        <div class="line-right"></div>
+        <!-- Animated Multi-Color Flowing Horizontal Line -->
+        <div class="animated-flowing-line"></div>
 
         <!-- Left Social Buttons -->
         <div class="social-col left">
@@ -452,14 +454,14 @@
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle insta" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <!-- Center Profile DP with Increased Gap/Distance for Rotating Rings -->
+        <!-- Center Profile DP with Spacing & Color Animation -->
         <div class="dp-container">
           <div class="ring-outer-dashed"></div>
           <div class="ring-inner-arc"></div>
           <img src="https://files.catbox.moe/9xprp0.jpg" alt="Logo" class="dp-img">
         </div>
 
-        <!-- Right Social Buttons (WhatsApp & Telegram with SVG Icon) -->
+        <!-- Right Social Buttons (WhatsApp & Official Telegram SVG) -->
         <div class="social-col right">
           <a href="https://whatsapp.com/channel/0029VbBJzoeHrDZXvmkaVT0d" class="social-btn-circle wa" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
           <a href="https://t.me/+nWSu9VPCdLo1OTZl" class="social-btn-circle tg" target="_blank">
